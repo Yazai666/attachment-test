@@ -1,0 +1,1711 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>成人亲密关系依恋类型测试</title>
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --surface: #ffffff;
+      --surface-soft: #faf8f3;
+      --text: #25231f;
+      --muted: #6f6a61;
+      --line: #ded8cb;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      --accent-border: #93c5fd;
+      --accent-text: #1e3a8a;
+      --primary: var(--accent);
+      --primary-dark: var(--accent-dark);
+      --primary-soft: var(--accent-soft);
+      --warning: #9d5d21;
+      --danger: #a84a42;
+      --shadow: 0 18px 50px rgba(43, 38, 28, 0.08);
+      --radius: 8px;
+      --max-width: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(246, 244, 239, 0.7), rgba(246, 244, 239, 1)),
+        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding-bottom: 104px;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 48px 0 26px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 12px;
+      color: var(--primary-dark);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.9rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .notice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .notice-item {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .notice-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--primary-dark);
+    }
+
+    .section-heading {
+      margin: 38px 0 16px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 1.42rem;
+      line-height: 1.35;
+    }
+
+    .section-heading p {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .question-card,
+    .report-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 26px rgba(43, 38, 28, 0.04);
+    }
+
+    .question-card {
+      margin: 14px 0;
+      padding: 20px;
+      scroll-margin-top: 18px;
+    }
+
+    .question-card.is-missing {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(168, 74, 66, 0.12);
+    }
+
+    .question-title {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .question-number {
+      flex: 0 0 auto;
+      min-width: 42px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .question-text {
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.58;
+    }
+
+    .question-context {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .options.likert {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .option {
+      position: relative;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: var(--surface-soft);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .option:hover {
+      border-color: var(--accent-border);
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .option.is-selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    }
+
+    .option-key {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      color: var(--primary-dark);
+      background: #fff;
+      border: 1px solid var(--accent-border);
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .option.is-selected .option-key {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .option-text {
+      min-width: 0;
+    }
+
+    .submit-bar {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 20;
+      padding: 14px 0;
+      background: rgba(246, 244, 239, 0.92);
+      border-top: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .submit-inner {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .progress-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .primary-button,
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 800;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .primary-button {
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .primary-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .secondary-button {
+      color: var(--primary-dark);
+      background: #fff;
+      border-color: var(--line);
+    }
+
+    .secondary-button:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .form-message {
+      margin: 18px 0 0;
+      min-height: 28px;
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .report {
+      padding: 26px 0 56px;
+    }
+
+    .report-header {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin: 0 0 18px;
+      padding: 24px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-dark), #3b82f6);
+      box-shadow: var(--shadow);
+    }
+
+    .report-header h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.55rem, 3vw, 2.3rem);
+      line-height: 1.22;
+    }
+
+    .report-header p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .report-header .tag {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .report-card {
+      padding: 22px;
+    }
+
+    .report-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .report-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.18rem;
+      line-height: 1.35;
+    }
+
+    .report-card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .list li {
+      margin: 7px 0;
+    }
+
+    .score-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .score-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 7px;
+      font-weight: 800;
+    }
+
+    .score-value {
+      color: var(--primary-dark);
+    }
+
+    .bar {
+      overflow: hidden;
+      height: 12px;
+      border-radius: 999px;
+      background: #ebe5d9;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: var(--primary);
+    }
+
+    .bar-fill.anxiety {
+      background: var(--accent);
+    }
+
+    .bar-fill.avoidance {
+      background: #1d4ed8;
+    }
+
+    .bar-fill.disorganized {
+      background: #1e40af;
+    }
+
+    .score-caption {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .analysis-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .analysis-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+    }
+
+    .analysis-card h4 {
+      margin: 0 0 8px;
+      color: var(--primary-dark);
+      font-size: 1rem;
+    }
+
+    .analysis-meta {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .analysis-card p {
+      margin: 0;
+    }
+
+    .fine-print {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 24px, var(--max-width));
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .notice,
+      .report-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .options.likert {
+        grid-template-columns: 1fr;
+      }
+
+      .question-card,
+      .report-card {
+        padding: 16px;
+      }
+
+      .question-title {
+        gap: 10px;
+      }
+
+      .submit-inner {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .progress-note {
+        text-align: center;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+      }
+
+      .report-header {
+        flex-direction: column;
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow">自评工具</p>
+        <h1>成人亲密关系依恋类型测试</h1>
+        <p class="subtitle">本测试用于帮助你观察自己在亲密关系中的反应模式。请根据你在恋爱、暧昧、亲密关系或重要关系中的真实反应作答。测试结果用于自我理解和关系观察，不构成医学诊断，也不能替代心理咨询。</p>
+        <div class="notice" aria-label="测试说明">
+          <div class="notice-item">
+            <strong>作答方式</strong>
+            <span>请按你在真实亲密关系或暧昧互动中的常见反应作答，不必追求“正确”。</span>
+          </div>
+          <div class="notice-item">
+            <strong>完成时间</strong>
+            <span>共 32 题，预计 6-10 分钟。每题都需要选择后才能提交。</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="testArea" aria-label="测试题目">
+        <div id="questionsRoot"></div>
+        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="reportArea" class="report hidden" aria-label="测试报告"></section>
+    </main>
+
+    <div id="submitBar" class="submit-bar">
+      <div class="container submit-inner">
+        <div id="progressNote" class="progress-note">已完成 0 / 32 题</div>
+        <button id="submitButton" class="primary-button" type="button">提交测试</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        id: "q1",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "当对方回复变慢、语气变淡或短时间没有主动联系时，我会明显不安。",
+        type: "likert",
+        dimension: "anxiety"
+      },
+      {
+        id: "q2",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "关系还没有明确时，我很想知道我们到底算什么。",
+        type: "likert",
+        dimension: "anxiety"
+      },
+      {
+        id: "q3",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "对方没有及时回应我的需求时，我会觉得自己被冷落或不重要。",
+        type: "likert",
+        dimension: "anxiety"
+      },
+      {
+        id: "q4",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "我会用反话、试探或赌气来确认对方在不在乎。",
+        type: "likert",
+        dimension: "anxiety"
+      },
+      {
+        id: "q5",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "关系出现波动时，我容易反复复盘自己是不是哪里做错了。",
+        type: "likert",
+        dimension: "anxiety"
+      },
+      {
+        id: "q6",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "对方越模糊、越不确定，我越难自然降温。",
+        type: "likert",
+        dimension: "anxiety"
+      },
+      {
+        id: "q7",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "当关系变得更亲近、更认真时，我会想拉开一点距离。",
+        type: "likert",
+        dimension: "avoidance"
+      },
+      {
+        id: "q8",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "对方要求明确关系、未来安排或稳定承诺时，我会感到压力。",
+        type: "likert",
+        dimension: "avoidance"
+      },
+      {
+        id: "q9",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "对方提出情感需求时，我会觉得被要求太多。",
+        type: "likert",
+        dimension: "avoidance"
+      },
+      {
+        id: "q10",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "发生误会或冲突后，我倾向先沉默、冷处理或让事情过去。",
+        type: "likert",
+        dimension: "avoidance"
+      },
+      {
+        id: "q11",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "我很怕亲密关系影响自己的自由和个人空间。",
+        type: "likert",
+        dimension: "avoidance"
+      },
+      {
+        id: "q12",
+        section: "scale",
+        partTitle: "第一部分：关系中的常见反应",
+        text: "我很少表达脆弱、想念、需要或在意。",
+        type: "likert",
+        dimension: "avoidance"
+      },
+      {
+        id: "q13",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "当对方半天没有回复我的消息时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "能正常做自己的事，之后自然接上。", scores: { safety: 2 } },
+          { key: "B", text: "心里有点在意，但能自己消化。", scores: { safety: 1 } },
+          { key: "C", text: "开始反复看手机，猜对方是不是变冷。", scores: { anxiety: 2 } },
+          { key: "D", text: "直接冷下来，觉得联系很麻烦，干脆不聊了。", scores: { avoidance: 2 } },
+          { key: "E", text: "一边想找对方，一边又觉得自己太需要别人，开始烦躁。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q14",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "当对方说“我希望我们能更明确一点”时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "认真回应，说明自己的想法和节奏。", scores: { safety: 2 } },
+          { key: "B", text: "有点紧张，但愿意继续谈。", scores: { safety: 1 } },
+          { key: "C", text: "立刻担心对方是不是要离开，急着表态。", scores: { anxiety: 2 } },
+          { key: "D", text: "感到压力，开始说“别想太多，顺其自然”。", scores: { avoidance: 2 } },
+          { key: "E", text: "当下想靠近，之后又开始退缩。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q15",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "一次亲密见面之后，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "联系节奏自然延续，也会安排下一次。", scores: { safety: 2 } },
+          { key: "B", text: "有好感，但需要一点时间消化。", scores: { safety: 1 } },
+          { key: "C", text: "特别想确认对方感觉，怕对方只是玩玩。", scores: { anxiety: 2 } },
+          { key: "D", text: "反而想拉开距离，恢复自由感。", scores: { avoidance: 2 } },
+          { key: "E", text: "见面时很投入，分开后又开始怀疑和退缩。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q16",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "比如对方说：“下次约我提前一天说，我更好安排。”这时我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "觉得合理，之后尽量做到。", scores: { safety: 2 } },
+          { key: "B", text: "会解释自己的习惯，也愿意协调。", scores: { safety: 1 } },
+          { key: "C", text: "担心自己让对方不满意，马上紧张。", scores: { anxiety: 2 } },
+          { key: "D", text: "觉得被管了，开始抗拒。", scores: { avoidance: 2 } },
+          { key: "E", text: "当下答应，之后因为压力又做不到。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q17",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "当我和对方发生一次小误会时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "解释清楚，也听对方感受。", scores: { safety: 2 } },
+          { key: "B", text: "先缓一下，之后愿意回来谈。", scores: { safety: 1 } },
+          { key: "C", text: "很怕关系变坏，急着解释、道歉、确认。", scores: { anxiety: 2 } },
+          { key: "D", text: "觉得麻烦，选择沉默或消失。", scores: { avoidance: 2 } },
+          { key: "E", text: "一开始想修复，谈深了又觉得受不了。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q18",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "当对方突然变得很热情时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "感到开心，也能自然回应。", scores: { safety: 2 } },
+          { key: "B", text: "观察一段时间，看行动是否稳定。", scores: { safety: 1 } },
+          { key: "C", text: "很快投入，期待关系迅速推进。", scores: { anxiety: 2 } },
+          { key: "D", text: "反而警惕，觉得对方靠太近。", scores: { avoidance: 2 } },
+          { key: "E", text: "既开心又害怕，想靠近又想退。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q19",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "当关系进入稳定期时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "觉得安心，愿意持续经营。", scores: { safety: 2 } },
+          { key: "B", text: "保持节奏，也保留自己的生活。", scores: { safety: 1 } },
+          { key: "C", text: "开始担心稳定之后对方会不会变心。", scores: { anxiety: 2 } },
+          { key: "D", text: "开始觉得乏味、被绑定、想要空间。", scores: { avoidance: 2 } },
+          { key: "E", text: "稳定让我安心，也让我害怕失控。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q20",
+        section: "scenario",
+        partTitle: "第二部分：具体情境选择",
+        text: "当对方问“你到底怎么想的？”时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "能给出清楚表达。", scores: { safety: 2 } },
+          { key: "B", text: "需要组织语言，但愿意说。", scores: { safety: 1 } },
+          { key: "C", text: "怕答不好会失去对方，所以很紧张。", scores: { anxiety: 2 } },
+          { key: "D", text: "觉得被逼问，想结束话题。", scores: { avoidance: 2 } },
+          { key: "E", text: "想说喜欢，又怕说了之后被关系困住。", scores: { anxiety: 1, avoidance: 1, disorganized: 2 } }
+        ]
+      },
+      {
+        id: "q21",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我的回复节奏与后续稳定性",
+        context: "在消息回复和后续推进上，我通常更接近：",
+        type: "choice",
+        options: [
+          { key: "A", text: "回复节奏相对稳定，即使偶尔慢回，也会说明原因或自然接上。", effects: { safety: 2 }, signal: "你的回复和推进整体稳定。" },
+          { key: "B", text: "回复经常变慢，也很少解释，后续安排容易断掉。", effects: { avoidance: 1 }, signal: "你的回复慢和推进断裂同时存在。" },
+          { key: "C", text: "见面时很热情，分开后消息和推进又明显变冷。", effects: { avoidance: 1, disorganized: 1 }, signal: "你在线下热情和线上推进之间存在落差。" },
+          { key: "D", text: "回复速度受工作或生活节奏影响，但其他方面稳定可靠。", effects: { avoidance: -1, safety: 1 }, signal: "你的回复速度受节奏影响，但其他方面稳定可靠。" }
+        ]
+      },
+      {
+        id: "q22",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我的关系推进方式",
+        context: "在关系推进上，我通常更接近：",
+        type: "choice",
+        options: [
+          { key: "A", text: "有好感时会自然推进，回应、见面和沟通整体稳定。", effects: { safety: 2 }, signal: "你有投入、有行动，也能稳定推进。" },
+          { key: "B", text: "推进比较慢，但每一步都清楚、稳定、有交代。", effects: { avoidance: -1, safety: 1 }, signal: "你慢热但稳定，能降低回避判断。" },
+          { key: "C", text: "推进慢，而且模糊、拖延，容易让对方长时间悬着。", effects: { avoidance: 1 }, signal: "推进慢且模糊拖延。" },
+          { key: "D", text: "时热时冷，靠近之后又明显后退。", effects: { avoidance: 1, disorganized: 1 }, signal: "靠近和后退交替出现。" }
+        ]
+      },
+      {
+        id: "q23",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我的情感表达与关键回应",
+        context: "在表达想法、需求、边界或真实感受时，我通常更接近：",
+        type: "choice",
+        options: [
+          { key: "A", text: "平时和关键问题上都能比较清楚地表达。", effects: { safety: 2 }, signal: "你在情感表达和关键回应上都较稳定。" },
+          { key: "B", text: "平时表达不多，但关键问题能回应。", effects: { safety: 1 }, signal: "你表达习惯偏少，但关键问题可以回应。" },
+          { key: "C", text: "不擅长甜言蜜语，但行动稳定，重要事情会交代。", effects: { safety: 1 }, signal: "你甜言蜜语不多，但行动和交代较稳定。" },
+          { key: "D", text: "谈到关系问题时容易沉默、含糊，或用“不善表达”回避承诺、解释和修复。", effects: { avoidance: 2 }, signal: "你在关键问题上更容易沉默、含糊或回避修复。" }
+        ]
+      },
+      {
+        id: "q24",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我一开始热情后的持续性",
+        context: "当我一开始表现得比较热情之后，后续通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "热情之后仍然持续稳定。", effects: { safety: 1 }, signal: "热情之后仍能持续稳定。" },
+          { key: "B", text: "热情之后迅速降温。", effects: { avoidance: 1 }, signal: "热情之后持续性不足。" },
+          { key: "C", text: "热情主要集中在暧昧、撩拨或身体亲密阶段。", effects: { avoidance: 1 }, signal: "热情集中在早期或特定阶段。" },
+          { key: "D", text: "热情之后能落实见面、沟通和关系安排。", effects: { safety: 1 }, signal: "热情之后能落实到具体行动。" }
+        ]
+      },
+      {
+        id: "q25",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我看起来情绪稳定时的真实表现",
+        context: "当关系出现不舒服、误会或分歧时，我的“情绪稳定”更接近：",
+        type: "choice",
+        options: [
+          { key: "A", text: "情绪稳定，也能沟通问题。", effects: { safety: 1 }, signal: "情绪稳定且能处理问题。" },
+          { key: "B", text: "看起来稳定，但一谈问题就消失。", effects: { avoidance: 1 }, signal: "表面稳定，但问题讨论中断。" },
+          { key: "C", text: "从不吵架，也从不真正解决问题。", effects: { avoidance: 1 }, signal: "少冲突也少修复。" },
+          { key: "D", text: "能平静表达不满和需求。", effects: { safety: 1 }, signal: "可以平静表达不满和需求。" }
+        ]
+      },
+      {
+        id: "q26",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我主动性不足时的真实表现",
+        context: "当我在关系里主动性不强时，后续表现更接近：",
+        type: "choice",
+        options: [
+          { key: "A", text: "不频繁主动，但每次互动有质量。", effects: { safety: 1 }, signal: "主动频率不高，但互动质量稳定。" },
+          { key: "B", text: "不主动，也不安排见面。", effects: { avoidance: 1 }, signal: "主动性和见面安排都不足。" },
+          { key: "C", text: "不主动，但对方提出后，我能稳定配合。", effects: { safety: 1 }, signal: "主动少，但配合稳定。" },
+          { key: "D", text: "不主动，关系问题也不回应。", effects: { avoidance: 1 }, signal: "主动少且关系问题回应不足。" }
+        ]
+      },
+      {
+        id: "q27",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "对方提出需求后的我的行为一致性",
+        context: "当对方向我提出一个清楚、合理的关系需求时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "认真听，之后行为有实际变化。", effects: { safety: 1 }, signal: "听见需求后有实际变化。" },
+          { key: "B", text: "当下答应，之后没有实际变化。", effects: { avoidance: 1 }, signal: "答应和行动之间不一致。" },
+          { key: "C", text: "觉得对方要求太多，之后开始变冷。", effects: { avoidance: 2 }, signal: "需求出现后明显降温。" },
+          { key: "D", text: "解释自己做不到的地方，也给出替代方案。", effects: { safety: 1 }, signal: "能解释限制并给出替代方案。" }
+        ]
+      },
+      {
+        id: "q28",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "冲突后的我的修复方式",
+        context: "发生误会或冲突之后，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "解释自己的想法，也听对方的感受。", effects: { safety: 2 }, signal: "冲突后能双向沟通。" },
+          { key: "B", text: "需要一点时间，但之后会回来谈。", effects: { safety: 1 }, signal: "需要缓冲，但会回到沟通。" },
+          { key: "C", text: "冷掉、消失、等对方先开口。", effects: { avoidance: 1 }, signal: "冲突后容易冷处理或消失。" },
+          { key: "D", text: "表面恢复正常，但问题从不真正解决。", effects: { avoidance: 1 }, signal: "表面平静，实际缺少修复。" }
+        ]
+      },
+      {
+        id: "q29",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "关系不确定时我的行动",
+        context: "当关系还没有明确、节奏还不稳定时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "观察真实行动，不急着逼出答案。", effects: { safety: 1 }, signal: "不确定时仍能观察事实。" },
+          { key: "B", text: "会焦虑，但能控制自己不测试对方。", effects: { anxiety: 1 }, signal: "有焦虑感，但能控制测试行为。" },
+          { key: "C", text: "会追问、试探、反复确认对方的态度。", effects: { anxiety: 2 }, signal: "不确定时确认需求明显上升。" },
+          { key: "D", text: "会突然撤退，用冷淡保护自己。", effects: { avoidance: 1, disorganized: 1 }, signal: "不确定时通过撤退保护自己。" }
+        ]
+      },
+      {
+        id: "q30",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "对方明确表达喜欢时我的反应",
+        context: "当对方明确表达喜欢或靠近时，我通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "感到开心，也能稳定回应。", effects: { safety: 1 }, signal: "被喜欢时能稳定回应。" },
+          { key: "B", text: "会开心，但需要观察对方是否稳定。", effects: { safety: 1 }, signal: "会观察稳定性，也能保留回应。" },
+          { key: "C", text: "很快投入，开始期待明确关系。", effects: { anxiety: 1 }, signal: "被喜欢后关系期待快速上升。" },
+          { key: "D", text: "越被靠近，越想挑问题或后退。", effects: { avoidance: 1, disorganized: 1 }, signal: "被靠近时容易后退或挑问题。" }
+        ]
+      },
+      {
+        id: "q31",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我对独处和亲密的平衡",
+        context: "在亲密和个人空间之间，我更接近：",
+        type: "choice",
+        options: [
+          { key: "A", text: "能享受亲密，也能保留自己的生活。", effects: { safety: 1 }, signal: "亲密和独处可以并存。" },
+          { key: "B", text: "亲密后需要一点空间，但会说明。", effects: { safety: 1 }, signal: "需要空间时能说明。" },
+          { key: "C", text: "对方需要陪伴时，我容易觉得被消耗。", effects: { avoidance: 1 }, signal: "陪伴需求容易带来消耗感。" },
+          { key: "D", text: "一旦关系稳定，我会想逃离。", effects: { avoidance: 1 }, signal: "稳定关系容易触发逃离感。" }
+        ]
+      },
+      {
+        id: "q32",
+        section: "calibration",
+        partTitle: "第三部分：关系互动后的后续行为",
+        text: "我的反话和真实需求",
+        context: "当我在关系里不舒服时，通常会：",
+        type: "choice",
+        options: [
+          { key: "A", text: "直接说明自己的需求。", effects: { safety: 1 }, signal: "不舒服时能直接表达需求。" },
+          { key: "B", text: "偶尔说反话，但之后会解释。", effects: { anxiety: 1 }, signal: "偶尔反话，但能回到解释。" },
+          { key: "C", text: "经常说“随便”“算了”，其实希望对方追问。", effects: { anxiety: 2 }, signal: "容易用反话表达确认需求。" },
+          { key: "D", text: "一边希望对方懂，一边又拒绝解释。", effects: { anxiety: 1, avoidance: 1, disorganized: 1 }, signal: "想被理解和拒绝解释同时出现。" }
+        ]
+      }
+    ];
+
+    const likertOptions = [
+      { key: "0", text: "很少符合", value: 0 },
+      { key: "1", text: "有时符合", value: 1 },
+      { key: "2", text: "经常符合", value: 2 }
+    ];
+
+    const typeContent = {
+      secure: {
+        name: "安全型依恋倾向",
+        tags: ["稳定回应", "能沟通修复", "亲密与独立平衡"],
+        summary: "你的结果显示，你通常能在亲密和独立之间保持相对稳定的平衡。关系出现波动时，你更倾向于观察事实、表达需求，并通过沟通修复关系。",
+        performances: [
+          "能亲近，也能独处。",
+          "能表达需求，也能听见对方需求。",
+          "关系出现问题时倾向沟通修复。",
+          "不把短暂延迟直接理解为关系危机。",
+          "喜欢一个人时，回应和行动相对一致。"
+        ],
+        causes: [
+          "早期关系中重要他人回应相对稳定。",
+          "亲密关系经验中较多正向修复。",
+          "能把需求表达和关系安全感连接起来。",
+          "有较稳定的自我价值感。"
+        ],
+        risks: [
+          "容易低估高焦虑或高回避对象的反复性。",
+          "在长期不对等关系中被消耗。",
+          "因为太能沟通而承担过多修复责任。"
+        ],
+        suggestions: [
+          "保持稳定表达和稳定行动。",
+          "识别对方是否具备修复能力。",
+          "在长期不对等关系中及时设边界。",
+          "避免用自己的稳定替对方承担所有关系责任。"
+        ]
+      },
+      anxious: {
+        name: "焦虑型依恋倾向",
+        tags: ["确认需求强", "关系信号敏感", "容易追逐不确定感"],
+        summary: "你的结果显示，关系里的回应速度、语气、主动性和明确程度容易影响你的安全感。越不确定的关系，越可能激活你确认、追问、复盘或试探的反应。",
+        performances: [
+          "对回复速度、语气变化、主动性高度敏感。",
+          "很难忍受关系模糊。",
+          "容易把对方的冷淡归因于自己不够好。",
+          "容易用试探、反话、赌气确认对方在乎。",
+          "对方越不确定，越容易上头和追逐。"
+        ],
+        causes: [
+          "重要关系中的回应忽冷忽热。",
+          "亲密关系中曾经历不确定、被替代、被忽视。",
+          "习惯通过观察对方情绪来判断自己是否安全。",
+          "把对方的回应强度和自我价值绑定得较紧。"
+        ],
+        risks: [
+          "容易被忽冷忽热的人吸引。",
+          "容易把不确定感误认为强烈喜欢。",
+          "容易用测试替代表达。",
+          "容易过度追逐，忽视对方真实投入不足。"
+        ],
+        suggestions: [
+          "把“关系事实”和“情绪推断”分开。",
+          "减少使用“随便”“算了”“你爱怎样怎样”测试对方。",
+          "需求表达要具体，例如“我希望下次提前一天约”。",
+          "观察连续行动，减少用单次回复速度判断关系。",
+          "对长期模糊的人设置观察期限。"
+        ]
+      },
+      avoidant: {
+        name: "回避型依恋倾向",
+        tags: ["亲密压力高", "承诺回避", "冲突后撤退"],
+        summary: "你的结果显示，当关系更明确、更亲近或对方提出需求时，你可能更容易感到压力，并通过沉默、降温、拉开距离来恢复掌控感。",
+        performances: [
+          "暧昧或轻松互动中表现自然，关系一靠近就有压力。",
+          "对明确关系、承诺、固定安排抗拒。",
+          "被提出需求后容易沉默、转移、降温。",
+          "冲突后倾向冷处理或让事情过去。",
+          "强调自由和个人空间，容易把亲密理解成负担。"
+        ],
+        causes: [
+          "早期需求表达没有被稳定接住。",
+          "亲密关系曾带来负担、控制或失控感。",
+          "习惯依靠独立和抽离维持安全感。",
+          "把表达需要理解成脆弱或麻烦。"
+        ],
+        risks: [
+          "容易在关系需要落地时失去稳定性。",
+          "容易让对方长期悬着。",
+          "冲突修复不足会累积信任损耗。",
+          "容易把合理需求感受成控制。"
+        ],
+        suggestions: [
+          "当需要空间时直接说明，避免消失。",
+          "练习给出清楚边界，例如“我需要今晚自己待着，明天再聊”。",
+          "区分合理需求和控制。",
+          "冲突后要有回到关系里的动作。",
+          "把亲密关系理解为协商节奏，而不是失去自由。"
+        ]
+      },
+      disorganized: {
+        name: "混乱型 / 恐惧回避型依恋倾向",
+        tags: ["又想靠近又想后退", "追逃交替", "亲密触发强"],
+        summary: "你的结果显示，亲密关系可能同时激活渴望和防御。你可能在想要靠近、确认关系与害怕被困住、想要退开之间反复切换。",
+        performances: [
+          "既渴望亲密，又害怕亲密。",
+          "对方冷时想追，对方热时想退。",
+          "容易在投入和抽离之间反复。",
+          "想获得明确答案，又害怕关系真的落地。",
+          "情绪系统和防御系统会交替启动。"
+        ],
+        causes: [
+          "亲密关系同时带来吸引和威胁。",
+          "重要关系中既有靠近，也有伤害或不稳定。",
+          "对被抛下和被吞没都有强烈敏感。",
+          "既想依赖，又很难相信依赖是安全的。"
+        ],
+        risks: [
+          "容易形成追逃循环。",
+          "容易在热情与撤退之间摇摆。",
+          "容易对稳定关系既向往又抗拒。",
+          "关系中的小波动会迅速触发强烈防御。"
+        ],
+        suggestions: [
+          "先降低关系推进速度，观察稳定性。",
+          "被触发时先暂停，避免立刻追问或撤退。",
+          "记录自己在“对方靠近”和“对方变远”时的不同反应。",
+          "把喜欢、焦虑、恐惧拆开看。",
+          "优先选择行动稳定、边界清楚、愿意修复的人。"
+        ]
+      },
+      mixed: {
+        name: "混合依恋倾向",
+        tags: ["模式需观察", "反应受情境影响", "亲密与防御并存"],
+        summary: "你的结果没有落在单一清晰类型上。你可能在不同对象、不同阶段或不同压力状态下呈现不同反应，建议把重点放在真实互动里的连续行动和修复能力上。",
+        performances: [
+          "在一部分关系中能稳定，在另一部分关系中容易被触发。",
+          "亲近、确认、退开或沉默可能随对象和阶段变化。",
+          "对关系信号有反应，但不一定固定表现为追或逃。",
+          "需要结合具体互动观察，而不是只看单次情绪。",
+          "当压力升高时，原本不明显的防御可能增强。"
+        ],
+        causes: [
+          "亲密经验中既有稳定部分，也有不确定部分。",
+          "不同关系对象带来的触发点不同。",
+          "当前压力状态影响了关系中的安全感。",
+          "对亲密、独立、承诺和表达仍在形成自己的节奏。"
+        ],
+        risks: [
+          "容易把一段关系里的反应套用到所有关系。",
+          "在不确定关系中反复自我怀疑。",
+          "容易忽视真实行动，只盯着单次信号。",
+          "关系推进过快或过慢时都可能触发防御。"
+        ],
+        suggestions: [
+          "记录触发点出现在哪类关系和哪类情境里。",
+          "用连续行动判断关系质量，而不是只看一两次表达。",
+          "把需求说具体，减少试探和猜测。",
+          "观察对方是否能回应、协商和修复。",
+          "给自己 2-4 周时间看模式是否稳定重复。"
+        ]
+      }
+    };
+
+    const answers = {};
+
+    const questionsRoot = document.getElementById("questionsRoot");
+    const formMessage = document.getElementById("formMessage");
+    const progressNote = document.getElementById("progressNote");
+    const submitButton = document.getElementById("submitButton");
+    const submitBar = document.getElementById("submitBar");
+    const testArea = document.getElementById("testArea");
+    const reportArea = document.getElementById("reportArea");
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderQuestions() {
+      let html = "";
+      let lastTitle = "";
+
+      questions.forEach((question, index) => {
+        if (question.partTitle !== lastTitle) {
+          html += `
+            <div class="section-heading">
+              <h2>${escapeHtml(question.partTitle)}</h2>
+              <p>${getSectionIntro(question.section)}</p>
+            </div>
+          `;
+          lastTitle = question.partTitle;
+        }
+
+        const options = question.type === "likert" ? likertOptions : question.options;
+        const optionClass = question.type === "likert" ? "options likert" : "options";
+        const optionHtml = options.map((option) => {
+          const value = question.type === "likert" ? option.value : option.key;
+          return `
+            <button class="option" type="button" data-question-id="${question.id}" data-value="${value}" aria-pressed="false">
+              <span class="option-key">${escapeHtml(option.key)}</span>
+              <span class="option-text">${escapeHtml(option.text)}</span>
+            </button>
+          `;
+        }).join("");
+
+        html += `
+          <article class="question-card" id="card-${question.id}" data-question-id="${question.id}">
+            <div class="question-title">
+              <span class="question-number">${index + 1}</span>
+              <div>
+                <p class="question-text">${escapeHtml(question.text)}</p>
+                ${question.context ? `<p class="question-context">${escapeHtml(question.context)}</p>` : ""}
+              </div>
+            </div>
+            <div class="${optionClass}" role="group" aria-label="${escapeHtml(question.text)}">
+              ${optionHtml}
+            </div>
+          </article>
+        `;
+      });
+
+      questionsRoot.innerHTML = html;
+    }
+
+    function getSectionIntro(section) {
+      const intro = {
+        scale: "请根据你在亲密关系中的真实反应作答。",
+        scenario: "请根据你在这些情境中更接近的真实反应作答。",
+        calibration: "请根据你在真实互动中反复出现的后续行为作答，这一部分用于判断关系反应是否稳定。"
+      };
+      return intro[section] || "";
+    }
+
+    function updateProgress() {
+      const completed = Object.keys(answers).length;
+      progressNote.textContent = `已完成 ${completed} / ${questions.length} 题`;
+    }
+
+    function handleOptionClick(event) {
+      const button = event.target.closest(".option");
+      if (!button) return;
+
+      const questionId = button.dataset.questionId;
+      const value = button.dataset.value;
+      answers[questionId] = value;
+
+      const card = document.getElementById(`card-${questionId}`);
+      card.classList.remove("is-missing");
+      card.querySelectorAll(".option").forEach((option) => {
+        const selected = option === button;
+        option.classList.toggle("is-selected", selected);
+        option.setAttribute("aria-pressed", String(selected));
+      });
+
+      formMessage.textContent = "";
+      updateProgress();
+    }
+
+    function validateAnswers() {
+      document.querySelectorAll(".question-card").forEach((card) => card.classList.remove("is-missing"));
+      const missing = questions.find((question) => answers[question.id] === undefined);
+
+      if (missing) {
+        const missingCard = document.getElementById(`card-${missing.id}`);
+        missingCard.classList.add("is-missing");
+        formMessage.textContent = `还有题目未完成，请先回答第 ${questions.indexOf(missing) + 1} 题。`;
+        missingCard.scrollIntoView({ behavior: "smooth", block: "center" });
+        return false;
+      }
+
+      return true;
+    }
+
+    function getSelectedOption(question) {
+      if (question.type === "likert") {
+        return likertOptions.find((option) => String(option.value) === String(answers[question.id]));
+      }
+      return question.options.find((option) => option.key === answers[question.id]);
+    }
+
+    function calculateScores() {
+      const raw = {
+        scaleAnxiety: 0,
+        scaleAvoidance: 0,
+        scenarioSafety: 0,
+        scenarioAnxiety: 0,
+        scenarioAvoidance: 0,
+        scenarioDisorganized: 0,
+        adjustAnxiety: 0,
+        adjustAvoidance: 0,
+        adjustDisorganized: 0,
+        safetySignals: 0,
+        gentleNotes: []
+      };
+
+      questions.forEach((question) => {
+        const selected = getSelectedOption(question);
+
+        if (question.section === "scale") {
+          const value = Number(answers[question.id]);
+          if (question.dimension === "anxiety") raw.scaleAnxiety += value;
+          if (question.dimension === "avoidance") raw.scaleAvoidance += value;
+        }
+
+        if (question.section === "scenario") {
+          const scores = selected.scores || {};
+          raw.scenarioSafety += scores.safety || 0;
+          raw.scenarioAnxiety += scores.anxiety || 0;
+          raw.scenarioAvoidance += scores.avoidance || 0;
+          raw.scenarioDisorganized += scores.disorganized || 0;
+        }
+
+        if (question.section === "calibration") {
+          const effects = selected.effects || {};
+          raw.adjustAnxiety += effects.anxiety || 0;
+          raw.adjustAvoidance += effects.avoidance || 0;
+          raw.adjustDisorganized += effects.disorganized || 0;
+          raw.safetySignals += effects.safety || 0;
+
+          if (effects.anxietyNote) {
+            raw.gentleNotes.push("有轻度焦虑反应，但你仍保留了一定自我调节能力。");
+          }
+          if (selected.signal) raw.gentleNotes.push(selected.signal);
+        }
+      });
+
+      const finalAnxiety = Math.max(0, raw.scaleAnxiety + raw.scenarioAnxiety * 0.6 + raw.adjustAnxiety);
+      const finalAvoidance = Math.max(0, raw.scaleAvoidance + raw.scenarioAvoidance * 0.6 + raw.adjustAvoidance);
+      const finalSafety = Math.max(0, raw.scenarioSafety + raw.safetySignals);
+      const finalDisorganized = Math.max(0, raw.scenarioDisorganized + raw.adjustDisorganized + Math.min(finalAnxiety, finalAvoidance) * 0.3);
+
+      return {
+        ...raw,
+        finalAnxiety: roundOne(finalAnxiety),
+        finalAvoidance: roundOne(finalAvoidance),
+        finalSafety: roundOne(finalSafety),
+        finalDisorganized: roundOne(finalDisorganized)
+      };
+    }
+
+    function roundOne(value) {
+      return Math.round(value * 10) / 10;
+    }
+
+    function determineType(scores) {
+      const anxiety = scores.finalAnxiety;
+      const avoidance = scores.finalAvoidance;
+      const safety = scores.finalSafety;
+      const disorganized = scores.finalDisorganized;
+
+      if (anxiety < 7 && avoidance < 7 && safety >= 8 && disorganized < 5) {
+        return buildTypeResult("secure", "安全信号较稳定，焦虑和回避反应都不高。");
+      }
+
+      if ((anxiety >= 8 && avoidance >= 8) || disorganized >= 8) {
+        return buildTypeResult("disorganized", "焦虑与回避同时较高，或亲近和退缩交替的信号较明显。");
+      }
+
+      if (anxiety >= 9 && avoidance < 8 && disorganized < 8) {
+        return buildTypeResult("anxious", "确认需求和关系信号敏感度更突出。");
+      }
+
+      if (avoidance >= 9 && anxiety < 8 && disorganized < 8) {
+        return buildTypeResult("avoidant", "亲近、承诺或需求出现时的压力反应更突出。");
+      }
+
+      if (anxiety - avoidance > 2) {
+        return buildTypeResult("anxious", "焦虑分高于回避分 2 分以上，呈现焦虑为主、伴随回避防御的混合表现。", "焦虑为主，伴随回避防御");
+      }
+
+      if (avoidance - anxiety > 2) {
+        return buildTypeResult("avoidant", "回避分高于焦虑分 2 分以上，呈现回避为主、伴随焦虑触发的混合表现。", "回避为主，伴随焦虑触发");
+      }
+
+      return buildTypeResult("mixed", "焦虑和回避分数接近，尚未形成单一清晰类型。", "混合倾向，建议继续观察");
+    }
+
+    function buildTypeResult(key, reason, secondaryLabel) {
+      return {
+        key,
+        reason,
+        secondary: secondaryLabel || getDefaultSecondary(key),
+        ...typeContent[key]
+      };
+    }
+
+    function getDefaultSecondary(key) {
+      const labels = {
+        secure: "安全信号为主，保留对关系质量的观察",
+        anxious: "焦虑倾向为主，需观察是否伴随退缩防御",
+        avoidant: "回避倾向为主，需观察是否伴随不安触发",
+        disorganized: "亲近渴望和退缩防御都需要被看见",
+        mixed: "反应模式受对象、阶段和压力状态影响较大"
+      };
+      return labels[key];
+    }
+
+    function buildRelationAnalysis(scores) {
+      const items = [];
+      const q1 = Number(answers.q1);
+      const q13 = answers.q13;
+      const q21 = answers.q21;
+      const q18 = answers.q18;
+      const q24 = answers.q24;
+      const q12 = Number(answers.q12);
+      const q23 = answers.q23;
+      const q9 = Number(answers.q9);
+      const q16 = answers.q16;
+      const q27 = answers.q27;
+      const q28 = answers.q28;
+      const q14 = answers.q14;
+      const q15 = answers.q15;
+      const q19 = answers.q19;
+      const q29 = answers.q29;
+      const q30 = answers.q30;
+      const q32 = answers.q32;
+      const replySensitive = q1 >= 2 || ["C", "E"].includes(q13);
+
+      if (replySensitive && ["A", "D"].includes(q21)) {
+        items.push({
+          title: "回复节奏与后续稳定性",
+          refs: "第 1、13、21 题",
+          text: "你对对方的回复延迟较敏感，但你自己的回复节奏也会受到生活安排影响，并且整体能够保持解释、接续或稳定推进。判断关系时可以把“回复速度”和“后续是否稳定”分开看。",
+          impact: "降低单纯由回复速度引发的关系判断，安全信号增加。"
+        });
+      } else if (replySensitive && ["B", "C"].includes(q21)) {
+        items.push({
+          title: "回复节奏与后续稳定性",
+          refs: "第 1、13、21 题",
+          text: "你对回复延迟敏感，同时你自己的回复和推进也存在不稳定表现。关系中的不确定感会被双方节奏进一步放大。",
+          impact: "回避和不确定信号增强，建议把回复速度与后续稳定性一起观察。"
+        });
+      } else if (!replySensitive && ["A", "D"].includes(q21)) {
+        items.push({
+          title: "回复节奏与后续稳定性",
+          refs: "第 1、13、21 题",
+          text: "你对回复延迟的解释更稳定，也能把回复速度和关系投入分开看，这是安全信号。",
+          impact: "安全信号增加，降低把单次慢回复理解为关系危机的可能。"
+        });
+      }
+
+      if (q21 === "C") {
+        items.push({
+          title: "线上线下节奏落差",
+          refs: "第 21 题",
+          text: "你在线下热情和线上推进之间存在落差，关系容易呈现忽近忽远的节奏。",
+          impact: "回避或混乱信号增强，建议观察热情是否能延续到稳定行动。"
+        });
+      }
+
+      if ((["C", "E"].includes(q18) || q30 === "C") && ["B", "C"].includes(q24)) {
+        items.push({
+          title: "热情与持续性",
+          refs: "第 18、24、30 题",
+          text: "你容易被热情触发投入，但你自己的热情持续性也存在波动。初期热情不能直接代表关系稳定，后续行动更能说明问题。",
+          impact: "焦虑投入和回避降温可能交替出现，建议重点观察持续行动。"
+        });
+      } else if (["A", "D"].includes(q24)) {
+        items.push({
+          title: "热情与持续性",
+          refs: "第 18、24、30 题",
+          text: "你在热情之后能保持持续行动，说明你的关系投入具有一定稳定性。",
+          impact: "安全信号增强，初期热情更可能落到稳定互动里。"
+        });
+      }
+
+      if (q12 >= 1 && ["B", "C"].includes(q23)) {
+        items.push({
+          title: "情感表达与关键回应",
+          refs: "第 12、23、28 题",
+          text: "你平时表达不算多，但关键问题能回应，或能用稳定行动补足表达。表达少更接近表达习惯，不能直接等同于回避。",
+          impact: "降低单纯因表达少而形成的回避判断。"
+        });
+      } else if (q23 === "A") {
+        items.push({
+          title: "情感表达与关键回应",
+          refs: "第 12、23、28 题",
+          text: "你在情感表达和关键问题回应上都较清楚，这是安全信号。",
+          impact: "安全信号增加，降低把表达问题理解为回避的可能。"
+        });
+      } else if (q23 === "D" || ["C", "D"].includes(q28)) {
+        items.push({
+          title: "情感表达与关键回应",
+          refs: "第 12、23、28 题",
+          text: "你在关键问题和冲突修复上容易回避，回避信号增强。",
+          impact: "回避倾向的可信度提高。"
+        });
+      }
+
+      if (q9 >= 2 && (["D", "E"].includes(q16) || ["B", "C"].includes(q27))) {
+        items.push({
+          title: "需求压力与行为一致性",
+          refs: "第 9、16、27 题",
+          text: "对方提出需求时，你容易感到压力，并且后续行动稳定性不足。关系越需要落地，回避风险越高。",
+          impact: "回避分和关系落地风险上升。"
+        });
+      } else if (["A", "D"].includes(q27)) {
+        items.push({
+          title: "需求压力与行为一致性",
+          refs: "第 9、16、27 题",
+          text: "你能在对方提出需求后给出回应或替代方案，说明你具备一定关系协商能力。",
+          impact: "安全信号增加，有助于降低需求带来的防御判断。"
+        });
+      }
+
+      if ((scores.finalAnxiety >= 8 && scores.finalAvoidance >= 8) || scores.finalDisorganized >= 8) {
+        items.push({
+          title: "追逃循环",
+          refs: "第 6、14、15、19、29、30、32 题",
+          text: "你在关系不确定时容易追，在关系靠近时又容易退，存在追逃循环倾向。亲密既会带来吸引，也会触发防御。",
+          impact: "混乱型或恐惧回避型倾向的解释权重增加。"
+        });
+      } else if (scores.finalAnxiety >= 9 && scores.finalAvoidance < 8) {
+        items.push({
+          title: "追逃循环",
+          refs: "第 6、14、15、19、29、30、32 题",
+          text: "你更容易在关系不确定时被触发，主要表现为追问、确认和情绪内耗。",
+          impact: "焦虑型倾向的解释权重增加。"
+        });
+      } else if (scores.finalAvoidance >= 9 && scores.finalAnxiety < 8) {
+        items.push({
+          title: "追逃循环",
+          refs: "第 6、14、15、19、29、30、32 题",
+          text: "你更容易在关系靠近、对方提出需求或冲突需要修复时后退，主要表现为压力、沉默和抽离。",
+          impact: "回避型倾向的解释权重增加。"
+        });
+      }
+
+      const pursuitSignals = [q14, q15, q19].filter((value) => value === "C" || value === "E").length;
+      const retreatSignals = [q14, q15, q19].filter((value) => value === "D" || value === "E").length;
+      const detailSignals = [q29, q30, q32].filter((value) => ["C", "D"].includes(value)).length;
+      if (items.length < 5 && pursuitSignals >= 1 && retreatSignals >= 1 && detailSignals >= 1) {
+        items.push({
+          title: "追逃循环",
+          refs: "第 6、14、15、19、29、30、32 题",
+          text: "你在部分情境里既有确认需求，也有靠近后的退缩反应，说明亲密和防御可能交替出现。",
+          impact: "混合倾向的解释权重增加。"
+        });
+      }
+
+      const fallbackItems = [
+        {
+          title: "观察重点",
+          refs: "全卷综合",
+          text: "你的答案里没有出现非常集中的单一触发点，后续更适合观察关系里的连续行动、需求回应和冲突修复。",
+          impact: "建议结合真实互动继续观察，而不是用单个信号下结论。"
+        },
+        {
+          title: "稳定行动",
+          refs: "第 21、22、27、28 题",
+          text: "关系里的安全感不只来自表达强度，也来自后续是否能接上、推进、回应需求和完成修复。",
+          impact: "建议把稳定行动作为后续观察的核心线索。"
+        },
+        {
+          title: "触发情境",
+          refs: "第 13、16、18、20 题",
+          text: "你的关系反应可能会随着回复延迟、需求提出、热情靠近或直接询问而变化。",
+          impact: "建议记录哪些情境最容易触发你的焦虑或退缩。"
+        }
+      ];
+
+      fallbackItems.forEach((item) => {
+        if (items.length < 3) items.push(item);
+      });
+
+      return items.slice(0, 5);
+    }
+
+    function buildAdjustmentSummary(scores) {
+      const notes = [];
+
+      if (scores.safetySignals >= 6) {
+        notes.push("后续行为中出现较多安全信号：能解释、能回应、能修复，说明部分看似冷淡或慢热的表现可能只是节奏和表达方式差异。");
+      }
+
+      if (scores.adjustAvoidance >= 4) {
+        notes.push("后续行为中多次出现回避相关信号：需求后降温、冲突后不修复、推进模糊或行动不足。");
+      } else if (scores.adjustAvoidance <= -2) {
+        notes.push("后续行为降低了回避判断：慢热、话少或回复慢并不必然等于逃避，关键要看是否有稳定行动。");
+      }
+
+      if (scores.adjustAnxiety >= 3) {
+        notes.push("后续行为中确认需求较明显：反复确认、试探或期待快速明确关系可能会放大不确定感。");
+      }
+
+      if (scores.adjustDisorganized >= 2) {
+        notes.push("后续行为中出现靠近后退、冷热切换或想解释又拒绝解释的模式，混乱指数因此上升。");
+      }
+
+      if (!notes.length) {
+        notes.push("后续行为没有明显改变主要结果，说明基础反应和具体情境选择之间相对一致。");
+      }
+
+      return notes;
+    }
+
+    function getScoreCaption(key, value) {
+      const captions = {
+        anxiety: value >= 9 ? "对关系信号较敏感，确认需求更容易被触发。" : value >= 6 ? "有一定关系敏感度，但仍保留调节空间。" : "焦虑反应较低，更容易把情绪和事实分开。",
+        avoidance: value >= 9 ? "亲密、需求或承诺出现时，退开和防御更容易启动。" : value >= 6 ? "有一定空间需求，建议观察是否能说明和修复。" : "回避反应较低，较能停留在沟通中。",
+        safety: value >= 12 ? "安全信号充足，行动、表达和修复能力较稳定。" : value >= 8 ? "存在较多安全信号，但仍需结合触发情境观察。" : "安全信号偏少，建议重点观察稳定行动和修复能力。",
+        disorganized: value >= 8 ? "亲近和退缩交替较明显，容易进入追逃循环。" : value >= 5 ? "存在一些矛盾反应，压力升高时更容易出现摇摆。" : "混乱指数较低，反应模式相对连贯。"
+      };
+      return captions[key];
+    }
+
+    function renderReport(scores, typeResult, analysisItems) {
+      const adjustmentSummary = buildAdjustmentSummary(scores);
+      const scoreRows = [
+        { label: "焦虑分", key: "anxiety", value: scores.finalAnxiety, max: 27 },
+        { label: "回避分", key: "avoidance", value: scores.finalAvoidance, max: 35 },
+        { label: "安全信号", key: "safety", value: scores.finalSafety, max: 29 },
+        { label: "混乱指数", key: "disorganized", value: scores.finalDisorganized, max: 32 }
+      ];
+
+      reportArea.innerHTML = `
+        <div class="report-header">
+          <div>
+            <h2>你的主要结果为：${escapeHtml(typeResult.name)}</h2>
+            <p>${escapeHtml(typeResult.summary)}</p>
+            <div class="tag-row">
+              ${typeResult.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+            </div>
+          </div>
+          <button class="secondary-button" type="button" id="resetButton">重新测试</button>
+        </div>
+
+        <div class="report-grid">
+          <section class="report-card full">
+            <h3>你的主要依恋倾向</h3>
+            <p><strong>主要倾向：</strong>${escapeHtml(typeResult.name)}</p>
+            <p><strong>次要倾向：</strong>${escapeHtml(typeResult.secondary)}</p>
+            <p><strong>判断说明：</strong>${escapeHtml(typeResult.reason)}</p>
+          </section>
+
+          <section class="report-card full">
+            <h3>分数概览</h3>
+            <div class="score-list">
+              ${scoreRows.map((row) => renderScoreRow(row)).join("")}
+            </div>
+          </section>
+
+          <section class="report-card">
+            <h3>典型表现</h3>
+            ${renderList(typeResult.performances)}
+          </section>
+
+          <section class="report-card">
+            <h3>可能形成原因</h3>
+            <p>以下内容用于理解关系反应模式，不代表确定性诊断。</p>
+            ${renderList(typeResult.causes)}
+          </section>
+
+          <section class="report-card">
+            <h3>主要风险点</h3>
+            ${renderList(typeResult.risks)}
+          </section>
+
+          <section class="report-card">
+            <h3>相处建议</h3>
+            ${renderList(typeResult.suggestions)}
+          </section>
+
+          <section class="report-card full">
+            <h3>题目关联分析</h3>
+            <div class="analysis-grid">
+              ${analysisItems.map(renderAnalysisItem).join("")}
+            </div>
+          </section>
+
+          <section class="report-card full">
+            <h3>后续行为补充</h3>
+            ${renderList(adjustmentSummary)}
+          </section>
+
+          <section class="report-card full">
+            <h3>观察补充</h3>
+            <p>这份测试更适合用于观察关系中的反应模式。依恋倾向会受到关系对象、人生阶段、压力状态和既往经验影响。建议结合 2-4 周真实互动继续观察。</p>
+            <p class="fine-print">如果你在关系中长期感到强烈痛苦、失控或无法停止反复拉扯，建议寻求专业心理咨询支持。</p>
+          </section>
+        </div>
+      `;
+
+      document.getElementById("resetButton").addEventListener("click", resetTest);
+    }
+
+    function renderScoreRow(row) {
+      const percent = Math.max(0, Math.min(100, (row.value / row.max) * 100));
+      return `
+        <div>
+          <div class="score-head">
+            <span>${escapeHtml(row.label)}</span>
+            <span class="score-value">${row.value.toFixed(1)}</span>
+          </div>
+          <div class="bar" aria-hidden="true">
+            <div class="bar-fill ${row.key}" style="width: ${percent}%"></div>
+          </div>
+          <div class="score-caption">${escapeHtml(getScoreCaption(row.key, row.value))}</div>
+        </div>
+      `;
+    }
+
+    function renderList(items) {
+      return `<ul class="list">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+    }
+
+    function renderAnalysisItem(item) {
+      return `
+        <article class="analysis-card">
+          <h4>${escapeHtml(item.title)}</h4>
+          <p class="analysis-meta">关联题目：${escapeHtml(item.refs)}</p>
+          <p>${escapeHtml(item.text)}</p>
+          <p class="analysis-meta">对结果的影响：${escapeHtml(item.impact)}</p>
+        </article>
+      `;
+    }
+
+    function submitTest() {
+      if (!validateAnswers()) return;
+
+      const scores = calculateScores();
+      const typeResult = determineType(scores);
+      const analysisItems = buildRelationAnalysis(scores);
+
+      renderReport(scores, typeResult, analysisItems);
+      testArea.classList.add("hidden");
+      submitBar.classList.add("hidden");
+      reportArea.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function resetTest() {
+      Object.keys(answers).forEach((key) => delete answers[key]);
+      document.querySelectorAll(".option").forEach((option) => {
+        option.classList.remove("is-selected");
+        option.setAttribute("aria-pressed", "false");
+      });
+      document.querySelectorAll(".question-card").forEach((card) => card.classList.remove("is-missing"));
+      formMessage.textContent = "";
+      reportArea.classList.add("hidden");
+      reportArea.innerHTML = "";
+      testArea.classList.remove("hidden");
+      submitBar.classList.remove("hidden");
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    renderQuestions();
+    updateProgress();
+    questionsRoot.addEventListener("click", handleOptionClick);
+    submitButton.addEventListener("click", submitTest);
+  </script>
+</body>
+</html>
